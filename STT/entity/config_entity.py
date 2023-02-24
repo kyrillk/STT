@@ -23,3 +23,11 @@ class DataIngestionConfig:
     download_dir = os.path.join(ROOT, DATA_DIR_NAME, DOWNLOAD_DIR)
     s3_zip_file_path: str = os.path.join(download_dir, file_name)
     unzip_data_dir_path: str = os.path.join(ROOT,DATA_DIR_NAME)
+
+@dataclass
+class DataPreprocessingConfig:
+    data_preprocessing_artifacts_dir = os.path.join(training_pipeline_config.artifact_dir, DATA_PREPROCESSING_ARTIFACTS_DIR)
+    metadata_dir_path = os.path.join(data_preprocessing_artifacts_dir, METADATA_DIR)
+    waves_file_path: str = os.path.join(metadata_dir_path, WAVS_FILE_PATH)
+    train_dir_path: str = os.path.join(data_preprocessing_artifacts_dir, DATA_PREPROCESSING_TRAIN_DIR)
+    test_dir_path: str = os.path.join(data_preprocessing_artifacts_dir, DATA_PREPROCESSING_TEST_DIR)
