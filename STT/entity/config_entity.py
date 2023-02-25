@@ -49,3 +49,11 @@ class ModelPusherConfig:
     s3_model_path: str = S3_BUCKET_URI
     model_pusher_artifacts_dir: str = os.path.join(training_pipeline_config.artifact_dir, MODEL_PUSHER_DIR)
 
+@dataclass
+class PredictionPipelineConfig:
+    s3_model_path: str = S3_BUCKET_URI
+    prediction_artifact_dir = os.path.join(ROOT, PREDICTION_PIPELINE_DIR_NAME)
+    model_download_path = os.path.join(prediction_artifact_dir, PREDICTION_MODEL_DIR_NAME)
+    app_artifacts = os.path.join(prediction_artifact_dir, APPLICATION_ARTIFACTS_DIR)
+    # input_sounds_path = os.path.join(app_artifacts, 'inputSound.mp3')
+    wave_sounds_path = os.path.join(app_artifacts, 'input-wave.wav')

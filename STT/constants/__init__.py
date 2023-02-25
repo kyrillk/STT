@@ -41,3 +41,8 @@ S3_MODEL_DIR_NAME: str = "s3_model/"
 
 # Model Pusher related constansts
 MODEL_PUSHER_DIR: str = "model_pusher"
+
+# constants related to prediction
+PREDICTION_PIPELINE_DIR_NAME = "prediction_artifacts"
+PREDICTION_MODEL_DIR_NAME = "prediction_model/"
+APPLICATION_ARTIFACTS_DIR = 'user_inputs'

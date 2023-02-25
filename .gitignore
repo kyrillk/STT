@@ -2,6 +2,7 @@ logs
 data
 demo.py
 artifacts
+prediction_artifacts
 
 
 # Byte-compiled / optimized / DLL files
