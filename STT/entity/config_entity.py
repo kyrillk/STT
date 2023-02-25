@@ -31,3 +31,8 @@ class DataPreprocessingConfig:
     waves_file_path: str = os.path.join(metadata_dir_path, WAVS_FILE_PATH)
     train_dir_path: str = os.path.join(data_preprocessing_artifacts_dir, DATA_PREPROCESSING_TRAIN_DIR)
     test_dir_path: str = os.path.join(data_preprocessing_artifacts_dir, DATA_PREPROCESSING_TEST_DIR)
+
+
+@dataclass
+class ModelTrainerConfig:
+    model_dir_path = os.path.join(training_pipeline_config.artifact_dir, MODEL_TRAINER_ARTIFACT_DIR)
