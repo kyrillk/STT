@@ -36,3 +36,10 @@ class DataPreprocessingConfig:
 @dataclass
 class ModelTrainerConfig:
     model_dir_path = os.path.join(training_pipeline_config.artifact_dir, MODEL_TRAINER_ARTIFACT_DIR)
+
+@dataclass
+class ModelEvaluationConfig:
+    s3_model_path: str = S3_BUCKET_URI
+    model_evaluation_artifact_dir: str = os.path.join(training_pipeline_config.artifact_dir, MODEL_EVALUATION_ARTIFACT_DIR)
+    best_model_dir: str = os.path.join(model_evaluation_artifact_dir, S3_MODEL_DIR_NAME)
+
