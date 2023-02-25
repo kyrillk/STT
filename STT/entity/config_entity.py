@@ -43,3 +43,9 @@ class ModelEvaluationConfig:
     model_evaluation_artifact_dir: str = os.path.join(training_pipeline_config.artifact_dir, MODEL_EVALUATION_ARTIFACT_DIR)
     best_model_dir: str = os.path.join(model_evaluation_artifact_dir, S3_MODEL_DIR_NAME)
 
+
+@dataclass
+class ModelPusherConfig:
+    s3_model_path: str = S3_BUCKET_URI
+    model_pusher_artifacts_dir: str = os.path.join(training_pipeline_config.artifact_dir, MODEL_PUSHER_DIR)
+
