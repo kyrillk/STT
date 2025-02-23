@@ -1,11 +1,20 @@
+# Use Miniconda base image
 FROM continuumio/miniconda3
 
-RUN apt update -y && pip3 --no-cache-dir install --upgrade awscli
-
+# Set working directory
 WORKDIR /app
 
-COPY  . /app
+# Install Python 3.10 explicitly
+RUN conda create -n myenv python=3.10 -y
 
-RUN pip install -r requirements.txt
+# Activate Conda environment and upgrade pip
+RUN /bin/bash -c "source activate myenv && pip install --upgrade pip setuptools wheel"
 
-CMD ["python3", "app.py"]
+# Copy application files
+COPY . /app
+
+# Install dependencies inside the Conda environment
+RUN /bin/bash -c "source activate myenv && pip install 'numpy<2' -r /app/requirements.txt"
+
+# Set default command
+CMD ["/bin/bash", "-c", "source activate myenv && python app.py"]
