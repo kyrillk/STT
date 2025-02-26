@@ -18,7 +18,9 @@ class DataIngestion:
             self.s3_sync = S3Sync()
         except Exception as e:
             raise STTException(e, sys)
-        
+    
+
+    # Not need no clouad storage?
     def get_data_from_cloud(self) -> None:
         try:
             logging.info("Initiating data download from s3 bucket...")

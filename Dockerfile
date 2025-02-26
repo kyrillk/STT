@@ -13,6 +13,8 @@ RUN /bin/bash -c "source activate myenv && pip install --upgrade pip setuptools 
 # Copy application files
 COPY . /app
 
+VOLUME ["/app/model_volume"]
+
 # Install dependencies inside the Conda environment
 RUN /bin/bash -c "source activate myenv && pip install 'numpy<2' -r /app/requirements.txt"
 

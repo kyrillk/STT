@@ -31,6 +31,8 @@ def predictroute():
     os.makedirs(config.prediction_artifact_dir, exist_ok=True)
     os.makedirs(config.app_artifacts, exist_ok=True)
 
+    # Sync the model from S3
+    # Not needed?
     s3_op = S3Sync()
     s3_op.sync_folder_from_s3(folder=config.model_download_path, aws_bucket_url=config.s3_model_path)
 

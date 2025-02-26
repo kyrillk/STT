@@ -31,6 +31,9 @@ class ModelEvaluation:
             os.makedirs(self.model_evaluation_config.model_evaluation_artifact_dir, exist_ok=True)
             model_path = self.model_evaluation_config.s3_model_path
             best_model_dir = self.model_evaluation_config.best_model_dir
+
+            # Sync the model from S3
+            # Change to volume?
             s3_sync = S3Sync()
             best_model_path = None
             s3_sync.sync_folder_from_s3(folder=best_model_dir, aws_bucket_url=model_path)

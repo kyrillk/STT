@@ -18,9 +18,12 @@ training_pipeline_config: TrainingPipelineConfig = TrainingPipelineConfig()
 
 @dataclass
 class DataIngestionConfig:
+    # not need not cload storage?
     bucket_uri = DATA_BUCKET_URI
     file_name = ZIP_FILE_NAME
+    # change to volume?
     download_dir = os.path.join(ROOT, DATA_DIR_NAME, DOWNLOAD_DIR)
+    # not need not cload storage?
     s3_zip_file_path: str = os.path.join(download_dir, file_name)
     unzip_data_dir_path: str = os.path.join(ROOT,DATA_DIR_NAME)
 
@@ -39,6 +42,7 @@ class ModelTrainerConfig:
 
 @dataclass
 class ModelEvaluationConfig:
+    # not need not cload storage?
     s3_model_path: str = S3_BUCKET_URI
     model_evaluation_artifact_dir: str = os.path.join(training_pipeline_config.artifact_dir, MODEL_EVALUATION_ARTIFACT_DIR)
     best_model_dir: str = os.path.join(model_evaluation_artifact_dir, S3_MODEL_DIR_NAME)
@@ -46,12 +50,14 @@ class ModelEvaluationConfig:
 
 @dataclass
 class ModelPusherConfig:
+    # not need not cload storage?
     s3_model_path: str = S3_BUCKET_URI
     model_pusher_artifacts_dir: str = os.path.join(training_pipeline_config.artifact_dir, MODEL_PUSHER_DIR)
 
 @dataclass
 class PredictionPipelineConfig:
-    s3_model_path: str = S3_BUCKET_URI
+    # not need not cload storage?
+    s3_model_path: str = "/app/model_volume"
     prediction_artifact_dir = os.path.join(ROOT, PREDICTION_PIPELINE_DIR_NAME)
     model_download_path = os.path.join(prediction_artifact_dir, PREDICTION_MODEL_DIR_NAME)
     app_artifacts = os.path.join(prediction_artifact_dir, APPLICATION_ARTIFACTS_DIR)

@@ -23,16 +23,18 @@ class ModelPusher:
                 trained_model_path = self.model_evaluation_artifacts.trained_model_path
 
 
-                s3_model_folder_path = self.model_pusher_config.s3_model_path
-                s3_op = S3Sync()
-                s3_op.sync_folder_to_s3(folder=trained_model_path, aws_bucket_url=s3_model_folder_path)
+                volume_model_folder_path = self.model_pusher_config.s3_model_path
+
+                # chagne to volume?
+                volume_sync = DockerVolumeSync()
+                volume_sync.sync_folder_to_volume(folder=trained_model_path, __path__ = volume_model_folder_path)
                 message = "Model Pusher pushed the current Trained model to Production server storage"
-                response = {"is model pushed": True, "S3_model": s3_model_folder_path,"message" : message}
+                response = {"is model pushed": True, "S3_model": volume_model_folder_path,"message" : message}
                 logging.info(response)
             else:
-                s3_model_folder_path = self.model_pusher_config.s3_model_path
+                volume_model_folder_path = self.model_pusher_config.volume_model_path
                 message = "Current Trained Model is not accepted as model in Production has better accuracy"
-                response = {"is model pushed": False, "S3_model":s3_model_folder_path,"message" : message}
+                response = {"is model pushed": False, "S3_model":volume_model_folder_path,"message" : message}
                 logging.info(response)
             
             model_pusher_artifacts = ModelPusherArtifacts(response=response)
